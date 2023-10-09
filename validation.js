@@ -46,6 +46,20 @@ document.addEventListener("DOMContentLoaded", function () {
           regex: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/,
           message: "Email must be in a valid email format.",
         },
+        {
+          id: "siblings",
+          regex: /^(\+|-)?\d+$/,
+          message: "Siblings of the student must consist of an optional sign (+/-) and an integer.",
+        },
+        {
+          id: "distance",
+          validate: () => {
+            const distanceField = document.querySelector("#distance");
+            const distanceValue = parseFloat(distanceField.value);
+            return !isNaN(distanceValue) && distanceValue >= 0 && distanceValue <= 14.25;
+          },
+          message: "Distance from school must be a non-negative number not greater than 14.25 km.",
+        },
       ];
   
       for (const field of fieldsToValidate) {
